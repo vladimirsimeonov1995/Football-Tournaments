@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Football Tournaments</title>
+</head>
+<body>
+<section>
+    </div>
+    <div id="building"></div>
+    <div id="offerManager">
+        <div id="loginUser">
+            <form th:action="@{/users/login}" th:method="post">
+                <h2>Login</h2>
+                <label for="username" class="text-white d-flex justify-content-center">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Username..." name="username">
+                <label for="password" class="text-white d-flex justify-content-center">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password..." name="password">
+                <button name="loginUser" class="button">Login</button>
+            </form>
+        </div>
+    </div>
+</section>
+</body>
+</html>
