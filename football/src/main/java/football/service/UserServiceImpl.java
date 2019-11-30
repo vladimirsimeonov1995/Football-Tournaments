@@ -45,6 +45,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserServiceModel findUserByUsername(String username) {
+        User user = this.usersRepository.findByUsername(username).orElse(null);
+
+        if(user == null) {
+            return null;
+        }else {
+            return this.mapper.map(user, UserServiceModel.class);
+        }
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println();
 

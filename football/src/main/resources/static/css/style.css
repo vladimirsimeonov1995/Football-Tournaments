@@ -1,5 +1,4 @@
 body {
-    background-image: url("/images/tesla.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -7,15 +6,127 @@ body {
     background-color: #464646;
 }
 
-.form-control{
-    text-align:center;
+.indexContainer {
+    background-image: url("/images/football-field.jpg");
+}
+
+/**
+LOGIN ------------------------------------------------------------------------------------
+ */
+.login-background {
+    background-image: url("/images/login-background.jpg");
+}
+
+.login-input {
+    background: transparent;
+}
+
+.login-input::-webkit-input-placeholder {
+    color: white;
+}
+
+.login-input:-moz-placeholder {
+    color: white;
+}
+
+.login-input::-moz-placeholder {
+    color: white;
+}
+
+.login-input:-ms-input-placeholder {
+    color: white;
+}
+
+.login-input::-ms-input-placeholder {
+    color: white;
+}
+
+.btn-login {
+    font-size: 18px;
+    color: black;
+    padding: 12px 22px;
+    border-radius: 12px;
+    background: transparent;
+    border: 1px solid white;
+}
+
+/**
+LOGIN END --------------------------------------------------------------------------------
+ */
+
+
+/**
+REGISTER ....................................................................................
+ */
+.register-background {
+    background-image: url("/images/register-background.jpg");
+}
+
+.register-input {
+    background: transparent;
+}
+
+.register-input::-webkit-input-placeholder {
+    color: green;
+}
+
+.register-input:-moz-placeholder {
+    color: green;
+}
+
+.register-input::-moz-placeholder {
+    color: green;
+}
+
+.register-input:-ms-input-placeholder {
+    color: green;
+}
+
+.register-input::-ms-input-placeholder {
+    color: green;
+}
+
+.btn-register {
+    font-size: 18px;
+    color: black;
+    padding: 12px 22px;
+    border-radius: 12px;
+    background: transparent;
+    border: 1px solid white;
+}
+
+/**
+ REGISTER end ...................................................................................
+ */
+
+
+
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+    background-color: black;
+    color: #FFF;
+    border: 0;
+}
+
+.form-control {
+    text-align: center;
     width: auto;
     margin: auto;
 }
-.footer{
+
+.footer {
     width: 100%;
     position: absolute;
     bottom: 0px;
     left: 0px;
     text-align: center;
+    background-color: black;
+!important;
+    color: #FFF;
+!important;
+}
+
+.bottom-buffer-20 {
+    margin-bottom: 20px;
 }

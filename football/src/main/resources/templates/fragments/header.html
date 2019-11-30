@@ -1,7 +1,7 @@
 <th:block>
     <th:block sec:authorize="isAnonymous()">
-    <nav class="navbar navbar-expand-lg navbar-background">
-        <a class="nav-link text-white active h5" th:href="@{/}">
+    <nav class="navbar navbar-expand-lg">
+        <a class="nav-brand text-white active h5" th:href="@{/}">
             <img src="/images/logo.jpg" class="text-left" width="120" height="60"></a>
         <div class="collapse navbar-collapse d-flex justify-content-end">
             <ul class="navbar-nav row">
@@ -19,41 +19,16 @@
     </nav>
     </th:block>
     <th:block sec:authorize="isAuthenticated()">
-        <nav class="navbar navbar-expand-lg navbar-background">
-            <a class="nav-link text-white active h5" th:href="@{/home}">
+        <nav class="navbar navbar-expand-lg">
+            <a class="nav-brand text-white active h5" th:href="@{/home}">
                 <img src="/images/logo.jpg" class="text-left" width="120" height="60"></a>
             <div class="collapse navbar-collapse d-flex justify-content-end">
                 <ul class="navbar-nav row">
                     <li class="nav-item active">
-                        <a class="nav-link text-white active font-weight-bold" th:href="@{/events/add-events}">+Add Event</a>
+                        <a class="nav-link text-white active font-weight-bold" th:href="@{/users/profile/{username}(username=${username})}">My Profile</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link text-white active font-weight-bold" th:href="@{/events/my-events}">My Event</a>
-                    </li>
-
-                    <li class="nav-item active">
-                        <a class="nav-link text-white active font-weight-bold" th:href="@{/events/all-events}">All Event</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link text-white active font-weight-bold" th:href="@{/vehicles/add-vehicle}">+Add Vehicle</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link text-white active font-weight-bold" th:href="@{/vehicles/my-vehicle}">My Vehicle</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link text-white active font-weight-bold" th:href="@{/offers/add-offer}">+Add Offer</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link text-white active font-weight-bold" th:href="@{/offers/my-offer}">My Offer</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link text-white active font-weight-bold" th:href="@{/offers/all-offer}">All Offer</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link text-white active font-weight-bold" th:href="@{/users/profile}">My Profile</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link text-white active font-weight-bold" th:href="@{/users/edit-profile}">Edit Profile</a>
+                        <a class="nav-link text-white active font-weight-bold" th:href="@{/users/profile/edit/{username}(username=${username})}">Edit Profile</a>
                     </li>
                     <li class="nav-item-active">
                         <form action="/logout?login" method="post">

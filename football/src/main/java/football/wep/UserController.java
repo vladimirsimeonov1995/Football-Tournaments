@@ -4,15 +4,15 @@ import football.service.UserService;
 import football.service.models.UserServiceModel;
 import football.wep.base.BaseController;
 import football.wep.models.RegisterUserModel;
+import football.wep.models.UserProfileViewModel;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/users")
@@ -50,7 +50,24 @@ public class UserController extends BaseController {
         return super.view("users/login");
     }
 
+    @GetMapping("/profile/{username}")
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView profile(@PathVariable("username") String username, Principal principal, ModelAndView modelAndView) {
+        UserServiceModel userServiceModel = this.userService.findUserByUsername(username);
+        if(userServiceModel == null){
+            throw new IllegalArgumentException("There is no user with that username!");
+        }
+        UserProfileViewModel model = this.modelMapper.map(userServiceModel, UserProfileViewModel.class);
+        modelAndView.addObject("model", model);
+        return super.viewWithUsername("users/profile", principal, modelAndView);
+    }
 
+//    @GetMapping("/profile/edit/{username}")
+//    @PreAuthorize("isAuthenticated()")
+//    public ModelAndView editProfile(@PathVariable("username") String username, Principal principal){
+//
+//        return null;
+//    }
 
 
 

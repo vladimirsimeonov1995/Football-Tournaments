@@ -2,6 +2,8 @@ package football.wep.base;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
+
 
 public abstract class BaseController {
 
@@ -17,4 +19,15 @@ public abstract class BaseController {
     protected ModelAndView redirect(String url) {
         return this.view("redirect:" + url);
     }
+
+    protected ModelAndView viewWithUsername(String view, Principal principal, ModelAndView modelAndView){
+        modelAndView.addObject("username", principal.getName());
+        return this.view(view, modelAndView);
+    }
+
+    protected ModelAndView viewWithUsername(String view, Principal principal) {
+        return this.viewWithUsername(view, principal, new ModelAndView());
+    }
+
+
 }

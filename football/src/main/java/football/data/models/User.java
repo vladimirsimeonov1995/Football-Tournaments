@@ -1,88 +1,57 @@
 package football.data.models;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
+@Getter
+@Setter
+@NoArgsConstructor
 public class User extends BaseEntity implements UserDetails {
 
-    private String username;
-    private String password;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private Set<Role> authorities;
-
-    public User() {
-    }
+    /**
+     *     private String username;
+     *     private String password;
+     *     private String firstName;
+     *     private String lastName;
+     *     private String email;
+     *     private Set<Role> authorities;
+     *     private List<Team> teams;
+     */
 
     @Column(name = "username", nullable = false, updatable = false, unique = true)
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    private String username;
 
     @Column(name = "password", nullable = false, updatable = true)
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    private String password;
 
     @Column(name = "first_name")
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    private String firstName;
 
     @Column(name = "last_name")
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    private String lastName;
 
     @Column(name = "email", nullable = false, updatable = true, unique = true)
-    public String getEmail() {
-        return email;
-    }
+    private String email;
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    @OneToMany(targetEntity = Team.class, mappedBy = "manager")
+    private List<Team> teams;
 
     @ManyToMany(targetEntity = Role.class, fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
-            joinColumns = @JoinColumn(
-                    name = "user_id",
-                    referencedColumnName = "id"
-            ),
-            inverseJoinColumns = @JoinColumn(
-                    name = "role_id",
-                    referencedColumnName = "id"
-            )
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
     )
-    public Set<Role> getAuthorities() {
-        return authorities;
-    }
+    private Set<Role> authorities;
 
-    public void setAuthorities(Set<Role> authorities) {
-        this.authorities = authorities;
-    }
 
     @Override
     @Transient

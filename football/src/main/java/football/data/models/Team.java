@@ -1,59 +1,48 @@
 package football.data.models;
 
+import football.data.models.emuns.Color;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "team")
-public class Team {
+@Getter
+@Setter
+@NoArgsConstructor
+public class Team extends BaseEntity{
 
-    private String name;
-    private String shirtColor;
-    private User manager;
-    private List<Player> players;
+    /**
+     *     private String name;
+     *     private Color shirtColor;
+     *     private User manager;
+     *     private Set<Player> players;
+     *     private Set<League> leagues;
+     */
 
-    public Team() {
-    }
 
     @Column(name = "name", updatable = true, unique = false, nullable = false)
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    private String name;
 
     @Column(name = "shirt_color", updatable = true, nullable = false)
-    public String getShirtColor() {
-        return shirtColor;
-    }
-
-    public void setShirtColor(String shirtColor) {
-        this.shirtColor = shirtColor;
-    }
+    @Enumerated(EnumType.STRING)
+    private Color shirtColor;
 
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "username",
-                referencedColumnName = "username")
-    public User getManager() {
-        return manager;
-    }
+            referencedColumnName = "username")
+    private User manager;
 
-    public void setManager(User manager) {
-        this.manager = manager;
-    }
+    @ManyToMany(targetEntity = Player.class, mappedBy = "teams")
+    private Set<Player> players;
 
-    @ManyToMany(targetEntity = Player.class)
-    @JoinTable(name = "teams_players",
+    @ManyToMany(targetEntity = League.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "leagues_teams",
             joinColumns = { @JoinColumn(name = "team_id", referencedColumnName = "id") } ,
-            inverseJoinColumns = { @JoinColumn(name = "player_egn", referencedColumnName = "egn")}
+            inverseJoinColumns = { @JoinColumn(name = "league_id", referencedColumnName = "id")}
     )
-    public List<Player> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(List<Player> players) {
-        this.players = players;
-    }
+    private Set<League> leagues;
 }
